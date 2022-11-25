@@ -10,14 +10,13 @@ const ArticlePage = () => {
   const article=articles.find(article=>article.name === articleId)
 
   return ( 
-    <div>
-       
+    <>
         <div key={article.name}>
           <h2>{article.title}</h2>
          <p>{article.content}</p>
         </div>
       
-    </div>
+    </>
   )
 }
        
