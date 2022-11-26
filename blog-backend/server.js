@@ -1,18 +1,49 @@
 const express = require('express')
 
+
+
 const app=express()
 
-const port = 5000 
 
-app.get('/hello',(req,res)=>{
-    res.send('hello ')
+//localhost:5173/articles/learn-node
+
+//PUT /article/learn-node upvote
+
+app.use(express.json())
+
+const PORT = 5000 
+ 
+let articlesInfo=[
+    {
+    name:'learn-react',
+    upvotes:0
+}, {
+    name:'learn-node',
+    upvotes:0
+},
+
+{
+    name:'mongodb',
+    upvotes:0
+}
+]
+
+//create upvote endpoint
+
+app.put('/api/articles/:name/upvote',(req,res)=>{
+   const {name}=req.params
+    const article =articlesInfo.find(a=>a.name == name)
+    if(article){
+        article.upvotes += 1;
+        res.send(`Hurray !! The ${name} article now has  ${article.upvotes} upvotes!!`)
+        
+    }else{
+        res.send('That doesnot exist')
+    }
+   
 })
 
-app.post('',(req,res)=>{
-    
-    res.status(200).send('Found it!')
-})
 
-app.listen(port,()=>{
-    console.log(`Server running on port ${port}`)
+app.listen(PORT,()=>{
+    console.log(`Server running on port ${PORT}`)
 })
