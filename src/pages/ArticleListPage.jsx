@@ -6,8 +6,9 @@ import { Link } from 'react-router-dom'
 const ArticleListPage = () => {
   return (
    <React.Fragment>
-    <h1>Articles</h1>
-    <ArticleList articles={articles}/>
+   
+    <ArticleList className="articlelist" articles={articles}/>
+ 
    </React.Fragment>
   )
 }

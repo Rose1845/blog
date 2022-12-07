@@ -17,9 +17,11 @@ const ArticlePage = () => {
 
   return ( 
     <>
-        <div key={article.name}>
-          <h2>{article.title}</h2>
-         <p>{article.content}</p>
+        <div className='articlePage' key={article.name}>
+         
+          <h2 className='articleTitle'>{article.title}</h2>
+          <p className='articleDesc'>{article.content}</p>
+         
         </div>
       
     </>
