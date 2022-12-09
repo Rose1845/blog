@@ -94,7 +94,7 @@ await db.collection('articles').updateOne({name},{
 
 const article = await db.collection('articles').findOne({name})
   if (article) {
-    res.send(
+    res.send(db=client.db('react-blog-db')
       `Hurray !! The ${name} article now has  ${article.upvotes} upvotes!!`
     );
   } else {
