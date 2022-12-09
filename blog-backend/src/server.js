@@ -1,6 +1,6 @@
 const mongodb = require("mongodb");
 require("dotenv").config();
-
+const {MongoClient}= require('mongodb')
 const client = new mongodb.MongoClient(process.env.MONGO_URL);
 
 client
@@ -13,7 +13,7 @@ module.exports = client.db('react-blog-db')
 
 const express = require("express");
 require("dotenv").config();
-const mongoClient = require("./db");
+//const mongoClient = require("./db");
 
 const app = express();
 
@@ -22,9 +22,15 @@ const MONGOURL = process.env.MONGO_URL;
 app.get("/api/articles/:name", async (req, res) => {
   const { name } = req.params;
   
+let db;
+const client=new MongoClient(MONGOURL)
 
-  // const article = mongoClient.collection('articles').find({}).toArray(); //.findOne({name})
-  const article=mongodb.MongoClient.collection('artciles').findOne({name})
+await client.connect()
+
+db=client.db('react-blog-db')
+
+//   const article = mongoClient.collection('articles').find({}).toArray(); //.findOne({name})
+const article=await db.collection('articles').findOne({name})
 if(article){
 
   res.json({ article });
