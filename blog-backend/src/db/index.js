@@ -11,3 +11,15 @@ async function connectTo(){
 module.exports={
   db,connectTo
 }
+//let client;
+
+// MongoClient
+//   .connect()
+//   .then((res) => console.log("successfully connected to db"))
+//   .catch((err) => console.log(err.message));
+
+// module.exports = client.db('react-blog-db')
+
+
+
+//const mongoClient = require("./db");

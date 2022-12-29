@@ -1,21 +1,21 @@
+const express=require('express')
+
+const app=express()
+
+require("dotenv").config();
 const mongodb = require("mongodb");
+
+// const cors=require('cors')
+app.use(express.json());
 require("dotenv").config();
 const {MongoClient}= require('mongodb')
-const client = new mongodb.MongoClient(process.env.MONGO_URL);
+//const client = new mongodb.MongoClient(process.env.MONGO_URL);
 
-client
-  .connect()
-  .then((res) => console.log("successfully connected to db"))
-  .catch((err) => console.log(err.message));
-
-module.exports = client.db('react-blog-db')
+// app.use(cors({
+//     credentials: true,
+// }))
 
 
-const express = require("express");
-require("dotenv").config();
-//const mongoClient = require("./db");
-
-const app = express();
 
 const MONGOURL = process.env.MONGO_URL;
 
@@ -42,7 +42,7 @@ if(article){
 
 //PUT /article/learn-node upvote
 
-app.use(express.json());
+
 
 const PORT = 8000;
 
@@ -50,18 +50,18 @@ let articlesInfo = [
   {
     name: "learn-react",
     upvotes: 0,
-    comment: [],
+   
   },
   {
     name: "learn-node",
     upvotes: 0,
-    comment: [],
+   
   },
 
   {
     name: "mongodb",
     upvotes: 0,
-    comment: [],
+   
   },
 ];
 
@@ -94,8 +94,8 @@ await db.collection('articles').updateOne({name},{
 
 const article = await db.collection('articles').findOne({name})
   if (article) {
-    res.send(db=client.db('react-blog-db')
-      `Hurray !! The ${name} article now has  ${article.upvotes} upvotes!!`
+    res.json(
+      article
     );
   } else {
     res.send("That doesnot exist");
@@ -130,8 +130,8 @@ app.post("/api/articles/:name/comments", async(req, res) => {
   })
   const article = await db.collection('articles').findOne({name})
   if (article) {
-    article.comment.push({ postedBy, text });
-    res.send(article.comment);
+    // article.comments.push({ postedBy, text });
+    res.json(article);
   } else {
     res.send("Doesnot exist");
   }

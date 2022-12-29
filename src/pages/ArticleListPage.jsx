@@ -8,7 +8,7 @@ const ArticleListPage = () => {
    <React.Fragment>
    
     <ArticleList className="articlelist" articles={articles}/>
- 
+  
    </React.Fragment>
   )
 }
